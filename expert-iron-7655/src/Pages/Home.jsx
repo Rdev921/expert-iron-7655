@@ -1,17 +1,9 @@
 import React from 'react'
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-// import "";
-import "swiper/css/bundle";
-import { Pagination, Navigation } from "swiper";
+
 const style = {
     marginTop : '30px'
 }
-const styles = {
-    
-}
+
 const Home = () => {
   return (
     <div style={style}>
@@ -25,7 +17,7 @@ const Home = () => {
         <img src="https://cdn-fsly.yottaa.net/5f90511cd93140f2cca8dcaa/www.catherines.com/v~4b.325/on/demandware.static/-/Sites-oss-Library/default/dw552bea66/ca-images/homepage/2023/wk03/01-2023-CA-Outfitting-HP-Banner-011723_D.jpg?yocs=j_m_" width="100%" style={style}  alt="" />
         <img src="https://cdn-fsly.yottaa.net/5f90511cd93140f2cca8dcaa/www.catherines.com/v~4b.325/on/demandware.static/-/Sites-oss-Library/default/dw4bc22dfb/ca-images/homepage/2023/wk03/ca-0117-Clearance_D.jpg?yocs=j_m_" width="100%" alt="" style={style}/>
 
-        
+        {/* <Footer/> */}
 
     </div>
   )

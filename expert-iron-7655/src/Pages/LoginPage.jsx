@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext,useState } from 'react'
 import {
     Flex,
     Box,
@@ -13,14 +13,42 @@ import {
     Text,
     useColorModeValue,
   } from '@chakra-ui/react';
+import { AuthContext } from '../Context/AuthContext';
+import { Navigate } from 'react-router-dom';
 const LoginPage = () => {
+  const{isAuth,login,logOut} = useContext(AuthContext); 
+  const[email,setEmail] = useState('eve.holt@reqres.in');
+  const[password,setPassword] = useState('cityslicka');
+
+  const handleLogin = ()=>{
+    const userDetails = {
+      email,password
+    }
+    fetch('https://reqres.in/api/login',{
+      method: 'POST',
+      headers:{
+        'Content-Type' : 'application/json',
+      },
+      body:JSON.stringify(userDetails)
+    })
+    .then((res)=>res.json())
+    .then((data)=>{
+      login(data.token);
+    }).catch((err)=>{
+      console.log(err);
+    })
+
+  };
+  if(isAuth){
+    return <Navigate to="/"/>
+  }
   return (
     <div>
         <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
@@ -30,17 +58,17 @@ const LoginPage = () => {
         </Stack>
         <Box
           rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
+          
           boxShadow={'lg'}
           p={8}>
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" value = {email} onChange={(e)=>setEmail(e.target.value)}/>
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" value = {password} onChange={(e)=>setPassword(e.target.value)}/>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -55,7 +83,7 @@ const LoginPage = () => {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }} onClick={handleLogin}>
                 Sign in
               </Button>
             </Stack>

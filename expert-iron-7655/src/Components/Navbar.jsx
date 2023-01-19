@@ -52,7 +52,7 @@ import {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <img src=''/>
+           
   
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
