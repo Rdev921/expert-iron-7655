@@ -1,5 +1,6 @@
 import React, { useReducer,useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { Link as RouterLink, useParams } from 'react-router-dom'
+// import { useCartContext } from '../Context/CartContext';
 import {
     Box,
     chakra,
@@ -22,6 +23,8 @@ import {
   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 import axios from 'axios';
+import Cart from './CartItems';
+import { useCartContext } from '../Context/CartContext';
 // import {Slider} from '../Components/Slider'
 const initState = {
     product :[],
@@ -51,6 +54,7 @@ switch (action.type) {
 }
 
 const ProductDetails = () => {
+  const { addToCart } = useCartContext();
 const[state,dispatch] = useReducer(reducer,initState)
 const{product,isLoading,isError} = state;
 const{id} = useParams();
@@ -65,12 +69,15 @@ const getData = async()=>{
     })
     
 };
+
+
 useEffect(()=>{
     getData();
 },[])
 const{name,image,price} = product;
   return (
     <div>
+      
         <Container maxW={'4xl'}>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
@@ -172,7 +179,7 @@ const{name,image,price} = product;
                 {/* Product Details */}
               </Text>
 
-              {/* <List spacing={2}>
+              <List spacing={2}>
                 <ListItem>
                   <Text as={'span'} fontWeight={'bold'}>
                     Between lugs:
@@ -216,11 +223,13 @@ const{name,image,price} = product;
                   </Text>{' '}
                   5 bar (50 metres / 167 feet){' '}
                 </ListItem>
-              </List> */}
+              </List>
             </Box>
           </Stack>
 
-          {/* <Button
+            <RouterLink to="/cart"
+            onClick={()=>addToCart(id,name,image,price)}>
+          <Button
             rounded={'none'}
             w={'full'}
             mt={8}
@@ -234,14 +243,16 @@ const{name,image,price} = product;
               boxShadow: 'lg',
             }}>
             Add to cart
-          </Button> */}
+          </Button>
+          </RouterLink>
 
-          {/* <Stack direction="row" alignItems="center" justifyContent={'center'}>
+          <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <Text>2-3 business days delivery</Text>
-          </Stack> */}
+          </Stack>
         </Stack>
       </SimpleGrid>
     </Container>
+    
     </div>
   )
 }

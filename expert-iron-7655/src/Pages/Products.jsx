@@ -47,9 +47,19 @@ const Products = () => {
     useEffect(() => {
         getData();
     }, [])
+
+function search()
+{
+  let q =  document.querySelector("#search").value;
+  console.log(q)
+let newData = products.filter(function(ele){
+    return ele.name.toLowerCase().includes(q.toLocaleLowerCase())
+})
+getData(newData)
+}
     return (
         <div>
-
+ <input id="search" onChange={search} type="text" placeholder="Search "></input>
             <Grid templateColumns="repeat(4,1fr)" gap={3} w="100%">
                 {products?.length > 0 && products.map((e) => {
                     return (

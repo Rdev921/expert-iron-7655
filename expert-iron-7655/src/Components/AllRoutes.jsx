@@ -6,6 +6,7 @@ import ProductDetails from '../Pages/ProductDetails'
 import LoginPage from '../Pages/LoginPage'
 import RegisterPage from '../Pages/RegisterPage'
 import Private from './Private'
+import Cart from '../Pages/CartItems'
 
 const AllRoutes = () => {
   return (
@@ -30,6 +31,7 @@ const AllRoutes = () => {
 
         }></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
       </Routes>
     </div>
   )
