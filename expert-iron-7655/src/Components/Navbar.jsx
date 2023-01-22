@@ -101,14 +101,14 @@ import {
 
             <RouterLink to="/register">
 
-            <Text
+            {/* <Text
               as={'a'}
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
               href={'#'}>
              REGISTER
-            </Text>
+            </Text> */}
             </RouterLink>
           </Stack>
         </Flex>

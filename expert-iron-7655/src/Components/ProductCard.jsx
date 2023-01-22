@@ -67,7 +67,7 @@ import {
             </Text>
             <Stack direction={'row'} align={'center'}>
               <Text fontWeight={800} fontSize={'xl'}>
-              ₹{price}
+              MRP, ₹{price}
               </Text>
               <Text textDecoration={'line-through'} color={'gray.600'}>
                 $24.96
