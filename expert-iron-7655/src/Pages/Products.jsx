@@ -2,7 +2,9 @@ import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { Grid, GridItem } from '@chakra-ui/react'
 import ProductCard from '../Components/ProductCard'
-import Sidebar from '../Components/Sidebar'
+import Sort from '../Components/Sort'
+import { useProductContext } from '../Context/ProductContext'
+
 
 const initState = {
     products: [],
@@ -31,6 +33,7 @@ const reducer = (state, action) => {
     }
 }
 const Products = () => {
+    // const{getData} = useProductContext();
     const [state, dispatch] = useReducer(reducer, initState)
     const { products, isLoading, isError } = state;
     const getData = async () => {
@@ -48,18 +51,11 @@ const Products = () => {
         getData();
     }, [])
 
-function search()
-{
-  let q =  document.querySelector("#search").value;
-  console.log(q)
-let newData = products.filter(function(ele){
-    return ele.name.toLowerCase().includes(q.toLocaleLowerCase())
-})
-getData(newData)
-}
+
     return (
         <div>
- <input id="search" onChange={search} type="text" placeholder="Search "></input>
+
+ <Sort/>
             <Grid templateColumns="repeat(4,1fr)" gap={3} w="100%">
                 {products?.length > 0 && products.map((e) => {
                     return (

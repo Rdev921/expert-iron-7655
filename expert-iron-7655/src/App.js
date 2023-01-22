@@ -5,10 +5,13 @@ import Home from './Pages/Home'
 import Footer from './Components/Footer'
 // import "./styles.css";
 import "swiper/css/bundle";
+import CartAmountToggle from './Components/CartAmountToggle'
+import Cart from './Pages/Cart'
 
 const App = () => {
   return (
     <div>
+ 
       <Navbar/>
       <AllRoutes/>
       <Footer/>

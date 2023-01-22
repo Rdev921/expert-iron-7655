@@ -6,7 +6,7 @@ import ProductDetails from '../Pages/ProductDetails'
 import LoginPage from '../Pages/LoginPage'
 import RegisterPage from '../Pages/RegisterPage'
 import Private from './Private'
-import Cart from '../Pages/CartItems'
+import Cart from '../Pages/Cart'
 
 const AllRoutes = () => {
   return (

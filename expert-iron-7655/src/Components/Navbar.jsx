@@ -53,7 +53,7 @@ import {
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
            
-  
+      <img src="./INSTA_FASHION_image.png" alt="" width={200} height={200}/>
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
             </Flex>
@@ -72,7 +72,7 @@ import {
               fontWeight={400}
               variant={'link'}
               href={'#'}>
-             Home
+              HOME
             </Text>
             </RouterLink>
 
@@ -83,7 +83,7 @@ import {
               fontWeight={400}
               variant={'link'}
               href={'#'}>
-             Products
+             PRODUCTS
             </Text>
             </RouterLink>
 
@@ -95,7 +95,7 @@ import {
               fontWeight={400}
               variant={'link'}
               href={'#'}>
-             Login
+             LOGIN
             </Text>
             </RouterLink> 
 
@@ -107,7 +107,7 @@ import {
               fontWeight={400}
               variant={'link'}
               href={'#'}>
-             Register
+             REGISTER
             </Text>
             </RouterLink>
           </Stack>
@@ -125,61 +125,7 @@ import {
     const linkHoverColor = useColorModeValue('gray.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
   
-    // return (
-    //   <Stack direction={'row'} spacing={4}>
-    //     {NAV_ITEMS.map((navItem) => (
-    //       <Box key={navItem.label}>
-    //         <Popover trigger={'hover'} placement={'bottom-start'}>
-    //           <PopoverTrigger>
-    //             <Link
-    //               p={2}
-    //               href={navItem.href ?? '#'}
-    //               fontSize={'sm'}
-    //               fontWeight={500}
-    //               color={linkColor}
-    //               _hover={{
-    //                 textDecoration: 'none',
-    //                 color: linkHoverColor,
-    //               }}>
-    //               {navItem.label}
-    //             </Link>
-    //           </PopoverTrigger>
-  
-    //           {navItem.children && (
-    //             <PopoverContent
-    //               border={0}
-    //               boxShadow={'xl'}
-    //               bg={popoverContentBgColor}
-    //               p={4}
-    //               rounded={'xl'}
-    //               minW={'sm'}>
-    //               <Stack>
-    //                 {navItem.children.map((child) => (
-    //                   <DesktopSubNav key={child.label} {...child} />
-    //                 ))}
-    //               </Stack>
-    //             </PopoverContent>
-    //           )}
-    //         </Popover>
-    //       </Box>
-    //     ))}
-    //   </Stack>
-    // );
-  };
-  
-  
-//   const MobileNav = () => {
-//     return (
-//       <Stack
-//         bg={useColorModeValue('white', 'gray.800')}
-//         p={4}
-//         display={{ md: 'none' }}>
-//         {NAV_ITEMS.map((navItem) => (
-//           <MobileNavItem key={navItem.label} {...navItem} />
-//         ))}
-//       </Stack>
-//     );
-//   };
+  }
   
  
   

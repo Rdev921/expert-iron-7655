@@ -1,6 +1,6 @@
-import React, { useReducer,useEffect} from 'react'
-import { Link as RouterLink, useParams } from 'react-router-dom'
-// import { useCartContext } from '../Context/CartContext';
+import React, { useReducer,useEffect,useState, useContext} from 'react'
+import CartAmountToggle from '../Components/CartAmountToggle';
+import { Link as Router ,useParams } from 'react-router-dom'
 import {
     Box,
     chakra,
@@ -18,14 +18,13 @@ import {
     VisuallyHidden,
     List,
     ListItem,
-    Slider
+
   } from '@chakra-ui/react';    
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { MdLocalShipping } from 'react-icons/md';
+
 import axios from 'axios';
-import Cart from './CartItems';
-import { useCartContext } from '../Context/CartContext';
-// import {Slider} from '../Components/Slider'
+import { CartContext } from '../Context/CartContext';
+
+
 const initState = {
     product :[],
     isLoading : true,
@@ -49,15 +48,18 @@ switch (action.type) {
         }
        
     default:
-        throw new Error();
+        return state;
 }
 }
 
 const ProductDetails = () => {
-  const { addToCart } = useCartContext();
+const[amount,setAmount] = useState(1);
+const {dispatch1} = useContext(CartContext);
+// console.log("Data",data);
 const[state,dispatch] = useReducer(reducer,initState)
 const{product,isLoading,isError} = state;
 const{id} = useParams();
+
 const getData = async()=>{
     axios.get(`https://63c6286bdcdc478e15bc2414.mockapi.io/products/${id}`)
     .then((res)=>{
@@ -69,15 +71,22 @@ const getData = async()=>{
     })
     
 };
-
-
 useEffect(()=>{
     getData();
 },[])
+
+const setDecrease = ()=>{
+  amount > 1 ? setDecrease(amount-1) : setDecrease(1);
+}
+const setIncrease = ()=>{
+ setIncrease(amount+1);
+}
 const{name,image,price} = product;
   return (
     <div>
-      
+    
+    <Stack>
+    </Stack>
         <Container maxW={'4xl'}>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
@@ -111,7 +120,7 @@ const{name,image,price} = product;
               color={useColorModeValue('gray.900', 'gray.400')}
               fontWeight={300}
               fontSize={'2xl'}>
-              ₹{price}
+              MRP, ₹{price}
             </Text>
             
           </Box>
@@ -226,9 +235,8 @@ const{name,image,price} = product;
               </List>
             </Box>
           </Stack>
-
-            <RouterLink to="/cart"
-            onClick={()=>addToCart(id,name,image,price)}>
+       
+          <Router to='/cart'>
           <Button
             rounded={'none'}
             w={'full'}
@@ -241,11 +249,16 @@ const{name,image,price} = product;
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
-            }}>
+            }} onClick={()=>dispatch1({type:"ADD_TO_CART",id:product.id,product})}>
             Add to cart
+           
           </Button>
-          </RouterLink>
-
+        </Router>
+         {/* <CartAmountToggle 
+          amount = {amount}
+          setDecrease = {setDecrease}
+          setIncrease = {setIncrease}
+        />  */}
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <Text>2-3 business days delivery</Text>
           </Stack>
@@ -254,6 +267,8 @@ const{name,image,price} = product;
     </Container>
     
     </div>
+   
+
   )
 }
 
